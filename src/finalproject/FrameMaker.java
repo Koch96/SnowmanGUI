@@ -19,29 +19,24 @@ public class FrameMaker extends JFrame{
     private JComboBox hatCombo;
     
     public FrameMaker(){
+        setSize(425,400);
+        JPanel controlPanel = new JPanel();
+        JPanel hatPanel = createComboBox();
+        JPanel timePanel = createRadioButtons();
         sc = new SnowmanComponent();
         add(sc, BorderLayout.CENTER);
-        listener = new ChoiceListener();
-        
-        setSize(425,400);
-        
-        createControlPanel();
-        setSnowman();
+        controlPanel.add(hatPanel);
+        controlPanel.add(timePanel);
+        controlPanel.setLayout(new GridLayout(1,2));
+        controlPanel.setBorder(new TitledBorder(new EtchedBorder(),"Control Panel"));
+        add(controlPanel, BorderLayout.SOUTH);
+        repaint();
     }
     
     class ChoiceListener implements ActionListener{
         public void actionPerformed(ActionEvent event){
             setSnowman();
         }
-    }
-    
-    public void createControlPanel(){
-        JPanel hatPanel = createComboBox();
-        JPanel timePanel = createRadioButtons();
-        
-        JPanel controlPanel = new JPanel();
-        controlPanel.add(hatPanel);
-        controlPanel.add(timePanel);
     }
     
     public JPanel createComboBox(){
@@ -78,9 +73,9 @@ public class FrameMaker extends JFrame{
     
     public void setSnowman(){
         String hatSelected = (String) hatCombo.getSelectedItem();
-        if(hatCombo.getSelectedItem()=="black") sc.setHatColor("black");
-        if(hatCombo.getSelectedItem()=="blue") sc.setHatColor("blue");
-        if(hatCombo.getSelectedItem()=="green") sc.setHatColor("green");
+        if(hatSelected.equals("black")) sc.setHatColor("black");
+        else if(hatSelected.equals("blue")) sc.setHatColor("blue");
+        else if(hatSelected.equals("green")) sc.setHatColor("green");
         
         if (dayButton.isSelected()) sc.setTime("day");
         else if (nightButton.isSelected()) sc.setTime("night");

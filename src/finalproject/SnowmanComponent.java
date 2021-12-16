@@ -19,12 +19,12 @@ public class SnowmanComponent extends JComponent{
         } 
         else if (c.equals("green")){
             hatColor = Color.GREEN;
-        } 
+        }
     }
     
     public void setTime(String t){
         if(t.equals("day")){
-            Color skyBlue = new Color(123,311,247);
+            Color skyBlue = new Color(123,211,247);
             bgColor = skyBlue;
         }
         else if (t.equals("night")){
@@ -32,10 +32,10 @@ public class SnowmanComponent extends JComponent{
         }  
     }
     
-    public void createSnowman(Graphics g){
+    public void paintComponent(Graphics g){
         Color brown = new Color(165,42,42);
         Color snow = new Color(211,211,211);
-        g.setColor(Color.WHITE);
+        g.setColor(bgColor);
         g.fillRect(0,0,425,400);
         g.setColor(snow);
         g.fillRect(0,310,425,90);
@@ -59,6 +59,9 @@ public class SnowmanComponent extends JComponent{
         g.setColor(brown);
         g.drawLine(103, 180, 53, 160);
         g.drawLine(193, 180, 243, 160);
+        g.setColor(hatColor);
+        g.fillRect(100,65,100,5);
+        g.fillRect(120,25,60,45);
     }
     
 }
